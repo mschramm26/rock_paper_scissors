@@ -1,1 +1,6 @@
 c:\users\melissa-acer\documents\visual studio 2015\Projects\Rock_Paper_Scissors\Rock_Paper_Scissors\bin\Debug\Rock_Paper_Scissors.exe.config
+c:\users\melissa-acer\documents\visual studio 2015\Projects\Rock_Paper_Scissors\Rock_Paper_Scissors\bin\Debug\Rock_Paper_Scissors.exe
+c:\users\melissa-acer\documents\visual studio 2015\Projects\Rock_Paper_Scissors\Rock_Paper_Scissors\bin\Debug\Rock_Paper_Scissors.pdb
+c:\users\melissa-acer\documents\visual studio 2015\Projects\Rock_Paper_Scissors\Rock_Paper_Scissors\obj\Debug\Rock_Paper_Scissors.csprojResolveAssemblyReference.cache
+c:\users\melissa-acer\documents\visual studio 2015\Projects\Rock_Paper_Scissors\Rock_Paper_Scissors\obj\Debug\Rock_Paper_Scissors.exe
+c:\users\melissa-acer\documents\visual studio 2015\Projects\Rock_Paper_Scissors\Rock_Paper_Scissors\obj\Debug\Rock_Paper_Scissors.pdb

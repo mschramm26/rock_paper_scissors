@@ -11,14 +11,10 @@ namespace Rock_Paper_Scissors
         static void Main(string[] args)
         {
 
-            // member variables
+            Game playGame = new Game();
+            playGame.PlayGame();
 
-
-            // constructor
-
-
-            // member methods
-
+            Console.Read();
 
         }
     }
