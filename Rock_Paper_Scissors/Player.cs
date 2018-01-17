@@ -47,25 +47,24 @@ namespace Rock_Paper_Scissors
             double incrementedScoreOfPlayer = scoreCounterPlayer + 1;
             return incrementedScoreOfPlayer;
         }
+        public double ReturnScoreOfPlayer(double scoreCounterPlayer)
+        {
+            return scoreCounterPlayer;
+        }
 
         public void PrintScoreOfPlayer(string name, double score)
         {
             Console.WriteLine(name + "'s score is " + score + ".");
         }
 
-        public double ReturnScoreOfPlayer(double scoreCounterPlayer)
+        public void AnnouncePlayerWonThisRound(string name)
         {
-            return scoreCounterPlayer;
+            Console.WriteLine(name + " won this round!");
         }
 
         public void AnnouncePlayerHasWonGame(string name)
         {
             Console.WriteLine(name + " has won 2 out of 3 rounds. " + name + " wins the game!");
-        }
-
-        public void AnnouncePlayerWonThisRound(string name)
-        {
-            Console.WriteLine(name + " won this round!");
         }
 
     }

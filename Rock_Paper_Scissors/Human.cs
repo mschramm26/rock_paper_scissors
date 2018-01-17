@@ -18,7 +18,7 @@ namespace Rock_Paper_Scissors
 
         // member methods
 
-        public override string GetName() // OVERRIDES Opponent base classs
+        public override string GetName() // OVERRIDES Opponent base class GetName
         {
             Console.WriteLine("Please enter the opponent's name.");
             string humanOpponentName = Console.ReadLine();
@@ -26,7 +26,7 @@ namespace Rock_Paper_Scissors
             return humanOpponentName;
         }
         
-        public override int ChooseActionOpponent(string name) // OVERRIDES Opponent base class
+        public override int ChooseActionOpponent(string name) // OVERRIDES Opponent base class ChooseActionOpponent
         {
             Console.WriteLine("It's " + name  + "'s turn.");
             Console.WriteLine("Please enter ROCK, PAPER, SCISSORS, LIZARD, or SPOCK.");

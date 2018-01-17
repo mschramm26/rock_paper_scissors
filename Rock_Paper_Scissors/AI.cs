@@ -18,12 +18,12 @@ namespace Rock_Paper_Scissors
         }
 
         // member methods
-        public override string GetName() // OVERRIDES Opponent base class
+        public override string GetName() // OVERRIDES Opponent base class GetName
         {
             return name;
         }
         
-        public override int ChooseActionOpponent(string name) // OVERRIDES Opponent base class
+        public override int ChooseActionOpponent(string name) // OVERRIDES Opponent base class ChooseActionOpponent
         {
             Console.WriteLine("It's " + name + "'s turn.");
             Random rnd = new Random();

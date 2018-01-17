@@ -18,10 +18,9 @@ namespace Rock_Paper_Scissors
         }
 
         // member methods
+        public abstract string GetName(); // OVERRIDDEN by human and AI methods
 
         public abstract int ChooseActionOpponent(string name); // OVERRIDDEN by Human and AI methods
-
-        public abstract string GetName(); // OVERRIDDEN by human and AI methods
 
         public double IncrementScoreOfOpponent() // doesn't need to be overridden
         {
@@ -34,9 +33,9 @@ namespace Rock_Paper_Scissors
             return score;
         }
 
-        public void AnnounceOpponentHasWonGame(string name) // doesn't need to be overridden
+        public void PrintScoreOfOpponent(string name, double score) // doesn't need to be overridden
         {
-            Console.WriteLine(name + " has won 2 out of 3 rounds. " + name + " wins the game!");
+            Console.WriteLine(name + "'s score is " + score + ".");
         }
 
         public void AnnounceOpponentWonThisRound(string name) // doesn't need to be overridden
@@ -44,10 +43,11 @@ namespace Rock_Paper_Scissors
             Console.WriteLine(name + " won this round!");
         }
 
-        public void PrintScoreOfOpponent(string name, double score) // doesn't need to be overridden
+        public void AnnounceOpponentHasWonGame(string name) // doesn't need to be overridden
         {
-            Console.WriteLine(name + "'s score is " + score + ".");
+            Console.WriteLine(name + " has won 2 out of 3 rounds. " + name + " wins the game!");
         }
+
 
     }
 }

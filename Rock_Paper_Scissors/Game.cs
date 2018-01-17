@@ -179,17 +179,17 @@ namespace Rock_Paper_Scissors
             if (humanOpponent == true & computerOpponent == false) /**********IF player is playing a HUMAN opponent**********/
             {
                 Human opponentHumanObject = new Human(); // instantiate new HUMAN object
-                string humanOpponentName = opponentHumanObject.GetName(); // get name of human object instantiated above
+                string opponentName = opponentHumanObject.GetName(); // get name of human object instantiated above
                 int playerAction = playerObject.ChooseActionPlayer(playerName); // have player choose an action
-                ConfirmInputAndClearScreen(humanOpponentName); // lets user press any key to clear the screen
-                int opponentAction = opponentHumanObject.ChooseActionOpponent(humanOpponentName); // allow human to pick action
+                ConfirmInputAndClearScreen(opponentName); // lets user press any key to clear the screen
+                int opponentAction = opponentHumanObject.ChooseActionOpponent(opponentName); // allow human to pick action
                 bool isATie = CheckForTie(playerAction, opponentAction); // check for tie by seeing if human and player chose the same action; announces tie if it is a tie
 
                 while (isATie) // what to do if it IS a tie 
                 {
                     int playerActionNew = playerObject.ChooseActionPlayer(playerName); // have player choose an action (returns int, 1-5)
-                    ConfirmInputAndClearScreen(humanOpponentName); // lets user press any key to clear the screen
-                    int opponentActionNew = opponentHumanObject.ChooseActionOpponent(humanOpponentName); // allow human to pick action
+                    ConfirmInputAndClearScreen(opponentName); // lets user press any key to clear the screen
+                    int opponentActionNew = opponentHumanObject.ChooseActionOpponent(opponentName); // allow human to pick action
                     bool tieCheck = CheckForTie(playerActionNew, opponentActionNew); // check for a tie again
                     isATie = tieCheck;
                 }
@@ -205,16 +205,16 @@ namespace Rock_Paper_Scissors
                         playerObject.AnnouncePlayerWonThisRound(playerName); // announce that PLAYER won this round
                         playerScore = playerObject.IncrementScoreOfPlayer(); // add 1 to player score
                         playerObject.PrintScoreOfPlayer(playerName, playerScore); // print score of player
-                        opponentHumanObject.PrintScoreOfOpponent(humanOpponentName, opponentScore); // print opponent score
+                        opponentHumanObject.PrintScoreOfOpponent(opponentName, opponentScore); // print opponent score
                         Console.WriteLine("Press any key to continue.");
                         Console.ReadLine(); // allows user to enter input
                         Console.Clear(); // clear screen
                     }
                     if (winnerAction == opponentAction) // if the opponent won
                     {
-                        opponentHumanObject.AnnounceOpponentWonThisRound(humanOpponentName); // announce that OPPONENT won this round
+                        opponentHumanObject.AnnounceOpponentWonThisRound(opponentName); // announce that OPPONENT won this round
                         opponentScore = opponentHumanObject.IncrementScoreOfOpponent(); // add 1 to opponent score
-                        opponentHumanObject.PrintScoreOfOpponent(humanOpponentName, opponentScore); // print opponent score
+                        opponentHumanObject.PrintScoreOfOpponent(opponentName, opponentScore); // print opponent score
                         playerObject.PrintScoreOfPlayer(playerName, playerScore); // print score of player
                         Console.WriteLine("Press any key to continue.");
                         Console.ReadLine(); // allows user to enter input
@@ -224,15 +224,15 @@ namespace Rock_Paper_Scissors
                     while ((playerObject.ReturnScoreOfPlayer(playerScore) < 2) & (opponentHumanObject.ReturnScoreOfOpponent(opponentScore) < 2)) // keep repeating rounds until one player's score equals 2
                     {
                         int playerActionNextRound = playerObject.ChooseActionPlayer(playerName); // have player choose an action
-                        ConfirmInputAndClearScreen(humanOpponentName); // lets user press any key to clear the screen
-                        int opponentActionNextRound = opponentHumanObject.ChooseActionOpponent(humanOpponentName); // allow human to pick action
+                        ConfirmInputAndClearScreen(opponentName); // lets user press any key to clear the screen
+                        int opponentActionNextRound = opponentHumanObject.ChooseActionOpponent(opponentName); // allow human to pick action
                         bool isATieNext = CheckForTie(playerActionNextRound, opponentActionNextRound); // check for tie by seeing if human and player chose the same action; announces tie if it is a tie
 
                         while (isATieNext) // what to do if it IS a tie
                         {
                             int playerActionNewNextRound = playerObject.ChooseActionPlayer(playerName); // have player choose an action
-                            ConfirmInputAndClearScreen(humanOpponentName); // lets user press any key to clear the screen
-                            int opponentActionNewNextRound = opponentHumanObject.ChooseActionOpponent(humanOpponentName); // allow human to pick action
+                            ConfirmInputAndClearScreen(opponentName); // lets user press any key to clear the screen
+                            int opponentActionNewNextRound = opponentHumanObject.ChooseActionOpponent(opponentName); // allow human to pick action
                             bool tieCheck = CheckForTie(playerActionNewNextRound, opponentActionNewNextRound); // check for a tie again
                             isATie = tieCheck;
                         }
@@ -246,16 +246,16 @@ namespace Rock_Paper_Scissors
                                 playerObject.AnnouncePlayerWonThisRound(playerName); // announce that PLAYER won this round
                                 playerScore = playerScore + 1; // add 1 to player score
                                 playerObject.PrintScoreOfPlayer(playerName, playerScore); // print score of player
-                                opponentHumanObject.PrintScoreOfOpponent(humanOpponentName, opponentScore); // print opponent score
+                                opponentHumanObject.PrintScoreOfOpponent(opponentName, opponentScore); // print opponent score
                                 Console.WriteLine("Press any key to continue.");
                                 Console.ReadLine(); // allows user to enter input
                                 Console.Clear(); // clear screen
                             }
                             if (winnerActionNext == opponentActionNextRound) // if the opponent won
                             {
-                                opponentHumanObject.AnnounceOpponentWonThisRound(humanOpponentName); // announce that OPPONENT won this round
+                                opponentHumanObject.AnnounceOpponentWonThisRound(opponentName); // announce that OPPONENT won this round
                                 opponentScore = opponentScore + 1; // add 1 to opponent score
-                                opponentHumanObject.PrintScoreOfOpponent(humanOpponentName, opponentScore); // print opponent score
+                                opponentHumanObject.PrintScoreOfOpponent(opponentName, opponentScore); // print opponent score
                                 playerObject.PrintScoreOfPlayer(playerName, playerScore); // print score of player
                                 Console.WriteLine("Press any key to continue.");
                                 Console.ReadLine(); // allows user to enter input
@@ -264,15 +264,15 @@ namespace Rock_Paper_Scissors
                         }
                     }
 
-                    double finalScorePlayer = playerObject.ReturnScoreOfPlayer(playerScore); // when someone's score reaches 2, find player's score
-                    double finalScoreOpponentHuman = opponentHumanObject.ReturnScoreOfOpponent(opponentScore); // when someone's score reaches 2, find opponent's score
+                    double finalScorePlayer = playerObject.ReturnScoreOfPlayer(playerScore); // when someone's score reaches 2, find player's score...
+                    double finalScoreOpponent = opponentHumanObject.ReturnScoreOfOpponent(opponentScore); // ...and then find opponent's score
                     if (finalScorePlayer == 2) // if player's score equals 2
                     {
                         playerObject.AnnouncePlayerHasWonGame(playerName); // player wins
                     }
-                    if (finalScoreOpponentHuman == 2) // if opponent's score equals 2
+                    if (finalScoreOpponent == 2) // if opponent's score equals 2
                     {
-                        opponentHumanObject.AnnounceOpponentHasWonGame(humanOpponentName); // opponent wins
+                        opponentHumanObject.AnnounceOpponentHasWonGame(opponentName); // opponent wins
                     }
                 }
             }
@@ -365,12 +365,12 @@ namespace Rock_Paper_Scissors
                     }
 
                     double finalScorePlayer = playerObject.ReturnScoreOfPlayer(playerScore); // when someone's score reaches 2, find player's score
-                    double finalScoreOpponentHuman = opponentAIObject.ReturnScoreOfOpponent(opponentScore); // when someone's score reaches 2, find opponent's score
+                    double finalScoreOpponent = opponentAIObject.ReturnScoreOfOpponent(opponentScore); // when someone's score reaches 2, find opponent's score
                     if (finalScorePlayer == 2) // if player's score equals 2
                     {
                         playerObject.AnnouncePlayerHasWonGame(playerName); // player wins
                     }
-                    if (finalScoreOpponentHuman == 2) // if AI's score equals 2
+                    if (finalScoreOpponent == 2) // if AI's score equals 2
                     {
                         opponentAIObject.AnnounceOpponentHasWonGame(AIOpponentName); // AI wins
                     }
