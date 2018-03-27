@@ -11,10 +11,12 @@ namespace Rock_Paper_Scissors
 
         // member variables
         string name = "Computer";
+        Random rnd; // declaring the random object here so it is available everywhere in this class
 
         // constructor
         public AI()
         {
+            Random rnd = new Random(); // instantiating a new instance of random object
         }
 
         // member methods
@@ -26,7 +28,6 @@ namespace Rock_Paper_Scissors
         public override int ChooseActionOpponent(string name) // OVERRIDES Opponent base class ChooseActionOpponent
         {
             Console.WriteLine("It's " + name + "'s turn.");
-            Random rnd = new Random();
             int actionChosenByOpponent = rnd.Next(1, 5);
             Console.WriteLine(name + " has chosen " + actionChosenByOpponent + ".");
             return actionChosenByOpponent;

@@ -10,11 +10,12 @@ namespace Rock_Paper_Scissors
     {
 
         // member variables
-
+        Player playerObject; // declaring the player object here so it is available everywhere in this class
 
         // constructor
         public Game()
         {
+            playerObject = new Player(); // instantiate new PLAYER object
 
         }
 
@@ -22,7 +23,7 @@ namespace Rock_Paper_Scissors
 
         public void WelcomeAndRules()
         {
-            Console.WriteLine("Welcome to Rock Paper Scissors Lizard Gecko!" + "\n");
+            Console.WriteLine("Welcome to Rock Paper Scissors Lizard Spock!" + "\n");
             Console.WriteLine("Here are the rules:");
             Console.WriteLine("SCISSORS cuts PAPER.");
             Console.WriteLine("PAPER covers ROCK.");
@@ -71,9 +72,9 @@ namespace Rock_Paper_Scissors
             }
         }
 
-        public void ConfirmInputAndClearScreen(string name)
+        public void PressAnyKeyToContinueAndClearScreen()
         {
-            Console.WriteLine("Press any key to continue so " + name + " can choose an action.");
+            Console.WriteLine("Press any key to continue.");
             Console.ReadLine(); // allows user to enter input
             Console.Clear(); // clear screen
         }
@@ -170,8 +171,7 @@ namespace Rock_Paper_Scissors
         public void PlayGame()
         {
             WelcomeAndRules(); // welcome them to the game and tell them the rules
-            Player playerObject = new Player(); // instantiate new PLAYER object
-            string playerName = playerObject.GetName(); // get name of player instantiated above
+            string playerName = playerObject.GetName(); // get name of player 
             int opponentChoice = AskIfOpponentIsHumanOrComputer(); // ask if opponent is human or AI 
             bool humanOpponent = CheckToSeeIfOpponentIsHuman(opponentChoice); // returns true if user chooses human opponent
             bool computerOpponent = CheckToSeeIfOpponentIsComputer(opponentChoice); // returns true if user chooses AI opponent
@@ -181,14 +181,14 @@ namespace Rock_Paper_Scissors
                 Human opponentHumanObject = new Human(); // instantiate new HUMAN object
                 string opponentName = opponentHumanObject.GetName(); // get name of human object instantiated above
                 int playerAction = playerObject.ChooseActionPlayer(playerName); // have player choose an action
-                ConfirmInputAndClearScreen(opponentName); // lets user press any key to clear the screen
+                PressAnyKeyToContinueAndClearScreen(); // lets user press any key to clear the screen
                 int opponentAction = opponentHumanObject.ChooseActionOpponent(opponentName); // allow human to pick action
                 bool isATie = CheckForTie(playerAction, opponentAction); // check for tie by seeing if human and player chose the same action; announces tie if it is a tie
 
                 while (isATie) // what to do if it IS a tie 
                 {
                     int playerActionNew = playerObject.ChooseActionPlayer(playerName); // have player choose an action (returns int, 1-5)
-                    ConfirmInputAndClearScreen(opponentName); // lets user press any key to clear the screen
+                    PressAnyKeyToContinueAndClearScreen(); // lets user press any key to clear the screen
                     int opponentActionNew = opponentHumanObject.ChooseActionOpponent(opponentName); // allow human to pick action
                     bool tieCheck = CheckForTie(playerActionNew, opponentActionNew); // check for a tie again
                     isATie = tieCheck;
@@ -206,9 +206,7 @@ namespace Rock_Paper_Scissors
                         playerScore = playerObject.IncrementScoreOfPlayer(); // add 1 to player score
                         playerObject.PrintScoreOfPlayer(playerName, playerScore); // print score of player
                         opponentHumanObject.PrintScoreOfOpponent(opponentName, opponentScore); // print opponent score
-                        Console.WriteLine("Press any key to continue.");
-                        Console.ReadLine(); // allows user to enter input
-                        Console.Clear(); // clear screen
+                        PressAnyKeyToContinueAndClearScreen(); // lets user press any key to clear the screen
                     }
                     if (winnerAction == opponentAction) // if the opponent won
                     {
@@ -216,22 +214,20 @@ namespace Rock_Paper_Scissors
                         opponentScore = opponentHumanObject.IncrementScoreOfOpponent(); // add 1 to opponent score
                         opponentHumanObject.PrintScoreOfOpponent(opponentName, opponentScore); // print opponent score
                         playerObject.PrintScoreOfPlayer(playerName, playerScore); // print score of player
-                        Console.WriteLine("Press any key to continue.");
-                        Console.ReadLine(); // allows user to enter input
-                        Console.Clear(); // clear screen
+                        PressAnyKeyToContinueAndClearScreen(); // lets user press any key to clear the screen
                     }
 
                     while ((playerObject.ReturnScoreOfPlayer(playerScore) < 2) & (opponentHumanObject.ReturnScoreOfOpponent(opponentScore) < 2)) // keep repeating rounds until one player's score equals 2
                     {
                         int playerActionNextRound = playerObject.ChooseActionPlayer(playerName); // have player choose an action
-                        ConfirmInputAndClearScreen(opponentName); // lets user press any key to clear the screen
+                        PressAnyKeyToContinueAndClearScreen(); // lets user press any key to clear the screen
                         int opponentActionNextRound = opponentHumanObject.ChooseActionOpponent(opponentName); // allow human to pick action
                         bool isATieNext = CheckForTie(playerActionNextRound, opponentActionNextRound); // check for tie by seeing if human and player chose the same action; announces tie if it is a tie
 
                         while (isATieNext) // what to do if it IS a tie
                         {
                             int playerActionNewNextRound = playerObject.ChooseActionPlayer(playerName); // have player choose an action
-                            ConfirmInputAndClearScreen(opponentName); // lets user press any key to clear the screen
+                            PressAnyKeyToContinueAndClearScreen(); // lets user press any key to clear the screen
                             int opponentActionNewNextRound = opponentHumanObject.ChooseActionOpponent(opponentName); // allow human to pick action
                             bool tieCheck = CheckForTie(playerActionNewNextRound, opponentActionNewNextRound); // check for a tie again
                             isATie = tieCheck;
@@ -247,9 +243,7 @@ namespace Rock_Paper_Scissors
                                 playerScore = playerScore + 1; // add 1 to player score
                                 playerObject.PrintScoreOfPlayer(playerName, playerScore); // print score of player
                                 opponentHumanObject.PrintScoreOfOpponent(opponentName, opponentScore); // print opponent score
-                                Console.WriteLine("Press any key to continue.");
-                                Console.ReadLine(); // allows user to enter input
-                                Console.Clear(); // clear screen
+                                PressAnyKeyToContinueAndClearScreen(); // lets user press any key to clear the screen
                             }
                             if (winnerActionNext == opponentActionNextRound) // if the opponent won
                             {
@@ -257,9 +251,7 @@ namespace Rock_Paper_Scissors
                                 opponentScore = opponentScore + 1; // add 1 to opponent score
                                 opponentHumanObject.PrintScoreOfOpponent(opponentName, opponentScore); // print opponent score
                                 playerObject.PrintScoreOfPlayer(playerName, playerScore); // print score of player
-                                Console.WriteLine("Press any key to continue.");
-                                Console.ReadLine(); // allows user to enter input
-                                Console.Clear(); // clear screen
+                                PressAnyKeyToContinueAndClearScreen(); // lets user press any key to clear the screen
                             }
                         }
                     }
@@ -279,17 +271,17 @@ namespace Rock_Paper_Scissors
                 if (computerOpponent == true & humanOpponent == false) /**********IF player is playing computer AI opponent**********/
             {
                     AI opponentAIObject = new AI(); // instantiate new AI object
-                    string AIOpponentName = opponentAIObject.GetName(); // get name of AI object instantiated above ("Computer")
+                    string opponentName = opponentAIObject.GetName(); // get name of AI object instantiated above ("Computer")
                     int playerAction = playerObject.ChooseActionPlayer(playerName); // have player choose an action
-                    ConfirmInputAndClearScreen(AIOpponentName); // lets user press any key to continue and let AI take turn
-                    int opponentAction = opponentAIObject.ChooseActionOpponent(AIOpponentName); // allow AI to pick action
+                    PressAnyKeyToContinueAndClearScreen(); // lets user press any key to continue and let AI take turn
+                    int opponentAction = opponentAIObject.ChooseActionOpponent(opponentName); // allow AI to pick action
                     bool isATie = CheckForTie(playerAction, opponentAction); // check for tie by seeing if AI and player chose the same action; announces tie if it is a tie
 
                 while (isATie) // what to do if it IS a tie
                 {
                     int playerActionNew = playerObject.ChooseActionPlayer(playerName); // have player choose an action (returns int, 1-5)
-                    ConfirmInputAndClearScreen(AIOpponentName); // lets user press any key to clear the screen
-                    int opponentActionNew = opponentAIObject.ChooseActionOpponent(AIOpponentName); // allow AI to pick action
+                    PressAnyKeyToContinueAndClearScreen(); // lets user press any key to clear the screen
+                    int opponentActionNew = opponentAIObject.ChooseActionOpponent(opponentName); // allow AI to pick action
                     bool tieCheck = CheckForTie(playerActionNew, opponentActionNew); // check for a tie again
                     isATie = tieCheck;
                 }
@@ -305,34 +297,30 @@ namespace Rock_Paper_Scissors
                         playerObject.AnnouncePlayerWonThisRound(playerName); // announce that PLAYER won this round
                         playerScore = playerObject.IncrementScoreOfPlayer(); // add 1 to player score
                         playerObject.PrintScoreOfPlayer(playerName, playerScore); // print score of player
-                        opponentAIObject.PrintScoreOfOpponent(AIOpponentName, opponentScore); // print opponent score
-                        Console.WriteLine("Press any key to continue.");
-                        Console.ReadLine(); // allows user to enter input
-                        Console.Clear(); // clear screen
+                        opponentAIObject.PrintScoreOfOpponent(opponentName, opponentScore); // print opponent score
+                        PressAnyKeyToContinueAndClearScreen(); // lets user press any key to clear the screen
                     }
                     if (winnerAction == opponentAction) // if the AI won
                     {
-                        opponentAIObject.AnnounceOpponentWonThisRound(AIOpponentName); // announce that AI won this round
+                        opponentAIObject.AnnounceOpponentWonThisRound(opponentName); // announce that AI won this round
                         opponentScore = opponentAIObject.IncrementScoreOfOpponent(); // add 1 to AI score
-                        opponentAIObject.PrintScoreOfOpponent(AIOpponentName, opponentScore); // print AI score
+                        opponentAIObject.PrintScoreOfOpponent(opponentName, opponentScore); // print AI score
                         playerObject.PrintScoreOfPlayer(playerName, playerScore); // print score of player
-                        Console.WriteLine("Press any key to continue.");
-                        Console.ReadLine(); // allows user to enter input
-                        Console.Clear(); // clear screen
+                        PressAnyKeyToContinueAndClearScreen(); // lets user press any key to clear the screen
                     }
 
                     while ((playerObject.ReturnScoreOfPlayer(playerScore) < 2) & (opponentAIObject.ReturnScoreOfOpponent(opponentScore) < 2)) // keep repeating rounds until one player's score equals 2
                     {
                         int playerActionNextRound = playerObject.ChooseActionPlayer(playerName); // have player choose an action
-                        ConfirmInputAndClearScreen(AIOpponentName); // lets user press any key to continues
-                        int opponentActionNextRound = opponentAIObject.ChooseActionOpponent(AIOpponentName); // allow AI to pick action
+                        PressAnyKeyToContinueAndClearScreen(); // lets user press any key to continues
+                        int opponentActionNextRound = opponentAIObject.ChooseActionOpponent(opponentName); // allow AI to pick action
                         bool isATieNext = CheckForTie(playerActionNextRound, opponentActionNextRound); // check for tie by seeing if AI and player chose the same action; announces tie if it is a tie
 
                         while (isATieNext) // what to do if it IS a tie
                         {
                             int playerActionNewNextRound = playerObject.ChooseActionPlayer(playerName); // have player choose an action
-                            ConfirmInputAndClearScreen(AIOpponentName); // lets user press any key to continue
-                            int opponentActionNewNextRound = opponentAIObject.ChooseActionOpponent(AIOpponentName); // allow AI to pick action
+                            PressAnyKeyToContinueAndClearScreen(); // lets user press any key to continue
+                            int opponentActionNewNextRound = opponentAIObject.ChooseActionOpponent(opponentName); // allow AI to pick action
                             bool tieCheck = CheckForTie(playerActionNewNextRound, opponentActionNewNextRound); // check for a tie again
                             isATie = tieCheck;
                         }
@@ -346,20 +334,16 @@ namespace Rock_Paper_Scissors
                                 playerObject.AnnouncePlayerWonThisRound(playerName); // announce that PLAYER won this round
                                 playerScore = playerScore + 1; // add 1 to player score
                                 playerObject.PrintScoreOfPlayer(playerName, playerScore); // print score of player
-                                opponentAIObject.PrintScoreOfOpponent(AIOpponentName, opponentScore); // print opponent score
-                                Console.WriteLine("Press any key to continue.");
-                                Console.ReadLine(); // allows user to enter input
-                                Console.Clear(); // clear screen
+                                opponentAIObject.PrintScoreOfOpponent(opponentName, opponentScore); // print opponent score
+                                PressAnyKeyToContinueAndClearScreen(); // lets user press any key to clear the screen
                             }
                             if (winnerActionNext == opponentActionNextRound) // if the AI won
                             {
-                                opponentAIObject.AnnounceOpponentWonThisRound(AIOpponentName); // announce that AI won this round
+                                opponentAIObject.AnnounceOpponentWonThisRound(opponentName); // announce that AI won this round
                                 opponentScore = opponentScore + 1; // add 1 to opponent score
-                                opponentAIObject.PrintScoreOfOpponent(AIOpponentName, opponentScore); // print AI score
+                                opponentAIObject.PrintScoreOfOpponent(opponentName, opponentScore); // print AI score
                                 playerObject.PrintScoreOfPlayer(playerName, playerScore); // print score of player
-                                Console.WriteLine("Press any key to continue.");
-                                Console.ReadLine(); // allows user to enter input
-                                Console.Clear(); // clear screen
+                                PressAnyKeyToContinueAndClearScreen(); // lets user press any key to clear the screen
                             }
                         }
                     }
@@ -372,7 +356,7 @@ namespace Rock_Paper_Scissors
                     }
                     if (finalScoreOpponent == 2) // if AI's score equals 2
                     {
-                        opponentAIObject.AnnounceOpponentHasWonGame(AIOpponentName); // AI wins
+                        opponentAIObject.AnnounceOpponentHasWonGame(opponentName); // AI wins
                     }
                 }
 

@@ -10,7 +10,7 @@ namespace Rock_Paper_Scissors
     {
         static void Main(string[] args)
         {
-
+            Console.Title = "Rock Player Scissors Lizard Spock";
             Game playGame = new Game();
             playGame.PlayGame();
 
